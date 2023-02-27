@@ -1,16 +1,18 @@
 // JavaScripts homeworks 1
 
-let firstNumber = +prompt('Введите первое число');
-let secondNumber = +prompt('Введите второе число');
+let firstNumber = prompt('Введите первое число');
+let secondNumber = prompt('Введите второе число');
 
 if (firstNumber && secondNumber) {
-    alert(`Сумма ваших чисел: ${firstNumber + secondNumber}`);
-    alert(`Разница ваших чисел: ${firstNumber - secondNumber}`);
-    alert(`Результат умножения ваших чисел: ${firstNumber * secondNumber}`);
-    alert(`Результат деления ваших чисел: ${firstNumber / secondNumber}`);
-    alert(`Максимальное число из введённых вами чисел: ${Math.max(firstNumber, secondNumber)}`);
-    alert(`Первое число: ${firstNumber % 2 === 0 ? 'чётное' : 'не чётное'}`);
-    alert(`Второе число: ${secondNumber % 2 === 0 ? 'чётное' : 'не чётное'}`);
+    let num1 = Number(firstNumber);
+    let num2 = Number(secondNumber);
+    alert(`Сумма ваших чисел: ${num1 + num2}`);
+    alert(`Разница ваших чисел: ${num1 - num2}`);
+    alert(`Результат умножения ваших чисел: ${num1 * num2}`);
+    alert(`Результат деления ваших чисел: ${num1 / num2}`);
+    alert(`Максимальное число из введённых вами чисел: ${Math.max(num1, num2)}`);
+    alert(`Первое число: ${num1 % 2 === 0 ? 'чётное' : 'не чётное'}`);
+    alert(`Второе число: ${num2 % 2 === 0 ? 'чётное' : 'не чётное'}`);
 } else {
     alert('Одно из значений не было введено');
 }
