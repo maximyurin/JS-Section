@@ -16,7 +16,7 @@ Accumulator.prototype.decrement = function () {
   this.value--;
 };
 
-// Функция-конструктор CancelableAccumulator, наследующая все методы Accumulator и имеющая свой собственный метод Clear.
+// Функция-конструктор CancelableAccumulator
 function CancelableAccumulator(initialValue) {
   Accumulator.call(this, initialValue);
   this.initialValue = initialValue;
