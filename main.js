@@ -4,29 +4,33 @@
 
 function Accumulator(initialValue) {
   this.value = initialValue;
-  // Метод Increment
-  this.increment = function () {
-    return this.value++;
-  };
-  // Метод Decrement
-  this.decrement = function () {
-    return this.value--;
-  };
 }
 
-// Функция-конструктор CancelableAccumulator, наследующая все методы Accumulator и имеющая свой собственный метод Clear.
+// Метод Increment
+Accumulator.prototype.increment = function () {
+  this.value++;
+};
 
+// Метод Decrement
+Accumulator.prototype.decrement = function () {
+  this.value--;
+};
+
+// Функция-конструктор CancelableAccumulator, наследующая все методы Accumulator и имеющая свой собственный метод Clear.
 function CancelableAccumulator(initialValue) {
   Accumulator.call(this, initialValue);
   this.initialValue = initialValue;
-  // Метод Clear
-  this.clear = function () {
-    return (this.value = this.initialValue);
-  };
 }
 
-// Тесты
+// Прототипное наследование
+CancelableAccumulator.prototype = Object.create(Accumulator.prototype);
 
+// Метод Clear
+CancelableAccumulator.prototype.clear = function () {
+  this.value = this.initialValue;
+};
+
+// Проверка
 console.log("Екземпляр прототипа Accumulator");
 const myAccumulator = new Accumulator(54);
 console.log(`Переданное значение ${myAccumulator.value}`);
@@ -54,6 +58,7 @@ mySecondAccumulator.decrement();
 console.log(`Результат декримента ${mySecondAccumulator.value}`);
 mySecondAccumulator.decrement();
 console.log(`Результат декримента ${mySecondAccumulator.value}`);
+mySecondAccumulator.clear();
 console.log(
-  `Возврат переданного в конструтор значения, переданное значение равно: ${mySecondAccumulator.clear()}`
+  `Возврат переданного в конструтор значения, переданное значение равно: ${mySecondAccumulator.value}`
 );
