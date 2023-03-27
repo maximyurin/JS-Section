@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.results {
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    height: auto;
+    margin: 15rem auto 0 auto;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.results h3 {
+    font-family: Arial, sans-serif;
+    margin: 5px 0;
+}
