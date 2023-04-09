@@ -18,7 +18,7 @@ const countdownTimer = setInterval(() => {
     (difference % (1000 * 60 * 60)) / (1000 * 60),
     (difference % (1000 * 60)) / 1000,
   ].map(Math.floor);
-  // Выводим вычесленные данные в html
+  // Выводим вычисленные данные в html
   daysCounter.innerHTML = days;
   hoursCounter.innerHTML = hours;
   minutesCounter.innerHTML = minutes;
