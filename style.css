@@ -1,0 +1,15 @@
+.container {
+    width: 20rem;
+    text-align: center;
+    margin: 20rem auto;
+    font-family: Arial, sans-serif;
+}
+.timer-count {
+    display: flex;
+    justify-content: space-between;
+}
+
+.timer-count span {
+    font-weight: bold;
+}
+
