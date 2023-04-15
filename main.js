@@ -1,18 +1,39 @@
-/* JavaScripts homeworks 1 */
+/* JavaScripts homeworks 12 */
 
-let firstNumber = prompt("Введите первое число");
-let secondNumber = prompt("Введите второе число");
+// 1. Реалізувати метод .pow(n) для масиву при виклику, якого всі елементи масиву мають бути піднесенні до степеню n.
 
-if (firstNumber && secondNumber) {
-  let num1 = Number(firstNumber);
-  let num2 = Number(secondNumber);
-  alert(`Сумма ваших чисел: ${num1 + num2}`);
-  alert(`Разница ваших чисел: ${num1 - num2}`);
-  alert(`Результат умножения ваших чисел: ${num1 * num2}`);
-  alert(`Результат деления ваших чисел: ${num1 / num2}`);
-  alert(`Максимальное число из введённых вами чисел: ${Math.max(num1, num2)}`);
-  alert(`Первое число: ${num1 % 2 === 0 ? "чётное" : "не чётное"}`);
-  alert(`Второе число: ${num2 % 2 === 0 ? "чётное" : "не чётное"}`);
-} else {
-  alert("Одно из значений не было введено");
+// Вариант 1
+
+Array.prototype.pow = function (n) {
+  return this.map((x) => Math.pow(x, n));
+};
+
+// Вариант 2
+
+// Array.prototype.pow = function (n) {
+//   const resultArray = [];
+//   for (let i = 0; i < this.length; i++) {
+//     const currentNumberInDegree = Math.pow(this[i], n);
+//     resultArray.push(currentNumberInDegree);
+//   }
+//   return resultArray;
+// };
+
+const myArr = [1, 2, 3].pow(2);
+console.log(myArr);
+
+// 2. Додати до функції метод defer(n), який має виконати тіло функції через n мілісекунд
+
+function a() {
+  console.log("test");
+  // alert(“test”)
 }
+
+a.defer = function (n) {
+  setTimeout(() => {
+    a();
+  }, n);
+};
+
+a();
+a.defer(3000);
