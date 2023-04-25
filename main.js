@@ -49,9 +49,17 @@ class GithubApi {
   }
 }
 
+/**
+ * Добрый день. У меня тут получилась проблемка. Сначала я создал токен пунктом - "Fine-grained personal access tokens"
+ * Протестировал всё работало отлично, но после того как я запушил проект на github, сам github обнаружил и онулировал токен (мне на почту пришло такой сообщение - Your GitHub Personal Access Token has been revoked).
+ * Соответственно когда вы скажаете проект на проверку он не будет работать.
+ * Сейчася создаю 60-ти дневный токен классическим способом и надеюсь проблем с гитхабом не будет в этом случае!
+ * Я добавил ещё один метод для обновления токена на случай если response status будет равен 401. Надебсь сделал это корректно.
+ */
+/
+
 window.addEventListener("load", async () => {
-  const token =
-    "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";
+  const token = "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";
   const githubApi = new GithubApi(token, "maximyurin");
   const repos = await githubApi.getRepos();
   console.log(repos);
