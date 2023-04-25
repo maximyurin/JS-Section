@@ -36,11 +36,14 @@ class GithubApi {
   }
   async updateToken() {
     // Запрос на обновление токена
-    const response = await fetch(`https://api.github.com/token/update`, {
-      headers: {
-        Authorization: `token ${this.token}`,
-      },
-    });
+    const response = await fetch(
+      `https://api.github.com/users/${this.username}/repos`,
+      {
+        headers: {
+          Authorization: `token ${this.token}`,
+        },
+      }
+    );
     if (!response.ok) {
       throw new Error("Ошибка при обновлении токена");
     }
@@ -51,16 +54,24 @@ class GithubApi {
 
 /**
  * Добрый день. У меня тут получилась проблемка. Сначала я создал токен пунктом - "Fine-grained personal access tokens"
- * Протестировал всё работало отлично, но после того как я запушил проект на github, сам github обнаружил и онулировал токен (мне на почту пришло такой сообщение - Your GitHub Personal Access Token has been revoked).
+ * Протестировал всё работало отлично, но после того как я запушил проект на github, сам github обнаружил и онулировал токен
+ * (мне на почту пришло такой сообщение - Your GitHub Personal Access Token has been revoked).
  * Соответственно когда вы скажаете проект на проверку он не будет работать.
  * Сейчася создаю 60-ти дневный токен классическим способом и надеюсь проблем с гитхабом не будет в этом случае!
+ * update: С классическим токеном такая же проблема. Я решил что создам новый токен и отправлю вам его лично.
+ * А вы введёте его в prompt, надеюсь сработает этот механизм.
  * Я добавил ещё один метод для обновления токена на случай если response status будет равен 401. Надебсь сделал это корректно.
  */
-/
 
 window.addEventListener("load", async () => {
-  const token = "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";
+  const token = prompt("Введите токен");
+  const container = document.querySelector(".container");
   const githubApi = new GithubApi(token, "maximyurin");
-  const repos = await githubApi.getRepos();
-  console.log(repos);
+  const userRepositories = await githubApi.getRepos();
+  let html = `<h3>Список репозиториев пользователя:</h3>`;
+  userRepositories.forEach((repository) => {
+    html += `<a href="${repository.html_url}" style="display: block;" target="_blank">${repository.full_name}</a>`;
+  });
+  container.insertAdjacentHTML("beforeend", html);
+  console.log(userRepositories);
 });
